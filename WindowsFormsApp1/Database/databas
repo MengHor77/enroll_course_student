@@ -1,0 +1,33 @@
+-- Create Database
+CREATE DATABASE YourDatabaseName;
+GO
+
+-- Use the database
+USE YourDatabaseName;
+GO
+
+-- Create students table
+CREATE TABLE students (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    lastname NVARCHAR(50),
+    firstname NVARCHAR(50),
+    gender  NVARCHAR(50),
+    age INT
+);
+GO
+
+-- Create courses table
+CREATE TABLE courses (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    code VARCHAR(20) UNIQUE,
+    name NVARCHAR(100)
+);
+GO
+
+-- Create enrollings table (many-to-many)
+CREATE TABLE enrollings (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    studentid INT FOREIGN KEY REFERENCES students(id),
+    courseid INT FOREIGN KEY REFERENCES courses(id)
+);
+GO
